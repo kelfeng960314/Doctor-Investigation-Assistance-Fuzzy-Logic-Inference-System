@@ -1,0 +1,53 @@
+% R-Fuzzy (C) J.M.Garibaldi, 1st Oct 2004 $Revision: 0.1$
+[System]
+Name='model2'
+Type='mamdani'
+NumInputs=2
+NumOutputs=1
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+mfType='t1'
+
+[Input1]
+Name='temperature'
+Range=[31 41]
+fuzzification.method=''
+fuzzification.params=[]
+firing.method='tnorm.min.max'
+NumMFs=5
+MF1=' very low':'trimf',[31 31 34]
+MF2=' low':'trimf',[31 34 37]
+MF3=' normal':'trimf',[33 36 39]
+MF4=' high':'trimf',[35 38 41]
+MF5=' very high':'trimf',[38 41 41]
+
+[Input2]
+Name='headache'
+Range=[0 100]
+fuzzification.method=''
+fuzzification.params=[]
+firing.method='tnorm.min.max'
+NumMFs=3
+MF1='mild':'trimf',[0 0 50]
+MF2='moderate':'trimf',[0 50 100]
+MF3='severe':'trimf',[50 100 100]
+
+[Output1]
+Name='urgency'
+Range=[0 10]
+NumMFs=3
+MF1='negligible':'trimf',[0 0 5]
+MF2='medium':'trimf',[0 5 10]
+MF3='emergent':'trimf',[5 10 10]
+
+[Rules]
+1 3, 3 (1) : 2
+2 2, 2 (1) : 1
+5 3, 3 (1) : 2
+4 2, 2 (1) : 1
+3 2, 1 (1) : 1
+
